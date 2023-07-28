@@ -1,5 +1,33 @@
 #!/bin/bash
 
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+adminuser=$(mysql -N -e "use King; select adminuser from setting where id='1';")
+adminpass=$(mysql -N -e "use King; select adminpassword from setting where id='1';")
+clear
+if [ "$adminuser" != "" ]; then
+adminusername=$adminuser
+adminpassword=$adminpass
+else
+adminusername=admin
+echo -e "\nPlease input Panel admin user."
+printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
+read usernametmp
+if [[ -n "${usernametmp}" ]]; then
+    adminusername=${usernametmp}
+fi
+adminpassword=123456
+echo -e "\nPlease input Panel admin password."
+printf "Default password is \e[33m${adminpassword}\e[0m, let it blank to use this password : "
+read passwordtmp
+if [[ -n "${passwordtmp}" ]]; then
+    adminpassword=${passwordtmp}
+fi
+fi
+
+ipv4=$(curl -s ipv4.icanhazip.com)
+
 # First, update the Ubuntu local package lists:
 sudo apt update
 
@@ -17,13 +45,12 @@ sudo apt-get install php8.1 -y
 sudo apt install php-mbstring php-mysql php-curl php-cli php-dev php-imagick php-soap php8.1-zip php-xml php-imap php-xmlrpc php8.1-gd php8.3-opcache php-intl php-json php8.1-ldap -y
 sudo systemctl restart apache2
 sudo apt install mariadb-server -y
-sudo mysql -u root -p <<EOF
-CREATE DATABASE King CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'amir'@'localhost' IDENTIFIED BY 'amir';
-GRANT ALL ON King.* TO 'amir'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-EOF
+mysql -e "create database King;" &
+wait
+mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';" &
+wait
+mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
+wait
 cd /var/www/
 git clone https://github.com/amirhshokoohi/test.git
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -34,14 +61,16 @@ sudo mv composer.phar /usr/local/bin/composer
 cd test
 composer install
 cp .env.example .env
-nano .env
+sudo sed -i "s/DB_DATABASE=.*/DB_DATABASE=King/" .env
+sudo sed -i "s/DB_USERNAME=.*/DB_USERNAME=$adminusername/" .env
+sudo sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$adminpassword/" .env
 sudo chgrp -R www-data /var/www/test
 sudo chown -R www-data:www-data /var/www/test
 sudo chmod -R 775 /var/www/test/storage
 cd /etc/apache2/sites-available/
 sudo nano test.conf
-echo "<VirtualHost *:80>
-   ServerName in1.farscloud.buzz
+echo "<VirtualHost *:$port>
+   ServerName $ipv4
    ServerAdmin webmaster@thedomain.com
    DocumentRoot /var/www/test/public
 
