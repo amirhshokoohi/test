@@ -6,9 +6,8 @@ temp_dir=$(mktemp -d)
 git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
 
 # Show the contents of king.txt
-echo -e "\e[35m"
-cat "$temp_dir/king.txt"
-echo -e "\e[0m"
+
+printf "\033[1;31;44m%s\033[0m\n" "$(<$temp_dir/king.txt)"
 
 
 # Show a message to the user
