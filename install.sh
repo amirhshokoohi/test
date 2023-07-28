@@ -1,36 +1,81 @@
 #!/bin/bash
 
-sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-adminuser=$(mysql -N -e "use King; select adminuser from setting where id='1';")
-adminpass=$(mysql -N -e "use King; select adminpassword from setting where id='1';")
+
+cat your_text_file.txt
+
+
+# Show a message to the user
+
+echo "Waiting for 3 seconds..."
+
+# Sleep for 3 seconds
+
+sleep 3
+
 clear
+
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+
+port=$(echo "$po" | sed "s/Port //g")
+
+adminuser=$(mysql -N -e "use King; select adminuser from setting where id='1';")
+
+adminpass=$(mysql -N -e "use King; select adminpassword from setting where id='1';")
+
+clear
+
 if [ "$adminuser" != "" ]; then
+
 adminusername=$adminuser
+
 adminpassword=$adminpass
+
 else
+
 adminusername=admin
+
 echo -e "\nPlease input Panel admin user."
+
 printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
+
 read usernametmp
+
 if [[ -n "${usernametmp}" ]]; then
+
     adminusername=${usernametmp}
+
 fi
+
 adminpassword=123456
+
 echo -e "\nPlease Enter Panel Admin Password."
+
 printf "Default password is \e[33m${adminpassword}\e[0m, let it blank to use this password : "
+
 read passwordtmp
+
 if [[ -n "${passwordtmp}" ]]; then
+
     adminpassword=${passwordtmp}
+
 fi
+
 adminport=8080
+
 echo -e "\nPlease Enter Panel Admin Port."
+
 printf "Default Port is \e[33m${adminport}\e[0m, let it blank to use this password : "
+
 read porttmp
+
 if [[ -n "${porttmp}" ]]; then
+
     adminport=${porttmp}
+
 fi
+
 fi
 
 ipv4=$(curl -s ipv4.icanhazip.com)
