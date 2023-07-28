@@ -43,8 +43,8 @@ sudo apt install unzip curl software-properties-common -y
 
 # Now, install the Apache2 web server using the apt package manager:
 sudo apt install apache2 -y
-yes
 sudo systemctl enable apache2
+sudo apt install ufw
 sudo ufw allow "Apache Full"
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get install php8.1 -y
