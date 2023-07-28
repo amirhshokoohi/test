@@ -1,16 +1,24 @@
 #!/bin/bash
 
 
-cat your_text_file.txt
+
+temp_dir=$(mktemp -d)
+git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
+
+# Show the contents of king.txt
+cat "$temp_dir/king.txt"
+
+
+cat king.txt
 
 
 # Show a message to the user
 
-echo "Waiting for 3 seconds..."
+echo "Waiting for 5 seconds..."
 
-# Sleep for 3 seconds
+# Sleep for 5 seconds
 
-sleep 3
+sleep 5
 
 clear
 
