@@ -14,11 +14,11 @@ cat king.txt
 
 # Show a message to the user
 
-echo "Waiting for 5 seconds..."
+echo "Waiting for 50 seconds..."
 
-# Sleep for 5 seconds
+# Sleep for 50 seconds
 
-sleep 5
+sleep 50
 
 clear
 
