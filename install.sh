@@ -46,7 +46,6 @@ sudo apt install apache2 -y
 yes
 sudo systemctl enable apache2
 sudo ufw allow "Apache Full"
-sudo apt install ufw -y
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get install php8.1 -y
 sudo apt install php-mbstring php-mysql php-curl php-cli php-dev php-imagick php-soap php8.1-zip php-xml php-imap php-xmlrpc php8.1-gd php8.3-opcache php-intl php-json php8.1-ldap -y
