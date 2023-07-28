@@ -18,12 +18,18 @@ if [[ -n "${usernametmp}" ]]; then
     adminusername=${usernametmp}
 fi
 adminpassword=123456
-echo -e "\nPlease input Panel admin password."
+echo -e "\nPlease Enter Panel Admin Password."
 printf "Default password is \e[33m${adminpassword}\e[0m, let it blank to use this password : "
 read passwordtmp
 if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
+adminport=8080
+echo -e "\nPlease Enter Panel Admin Port."
+printf "Default Port is \e[33m${adminport}\e[0m, let it blank to use this password : "
+read porttmp
+if [[ -n "${porttmp}" ]]; then
+    adminport=${passwordtmp}
 fi
 
 ipv4=$(curl -s ipv4.icanhazip.com)
@@ -36,7 +42,7 @@ sudo apt install unzip curl software-properties-common -y
 
 # Now, install the Apache2 web server using the apt package manager:
 sudo apt install apache2 -y
-sudo systemctl status apache2
+yes
 sudo systemctl enable apache2
 sudo ufw allow "Apache Full"
 sudo apt install ufw -y
@@ -69,7 +75,7 @@ sudo chown -R www-data:www-data /var/www/test
 sudo chmod -R 775 /var/www/test/storage
 cd /etc/apache2/sites-available/
 sudo nano test.conf
-echo "<VirtualHost *:$port>
+echo -e "<VirtualHost *:$adminport>
    ServerName $ipv4
    ServerAdmin webmaster@thedomain.com
    DocumentRoot /var/www/test/public
@@ -79,11 +85,12 @@ echo "<VirtualHost *:$port>
    </Directory>
    ErrorLog \${APACHE_LOG_DIR}/error.log
    CustomLog \${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" | sudo tee test.conf
+</VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null
 sudo a2dissite 000-default.conf
 sudo a2ensite test.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
+cd /var/www/test/
 php artisan key:generate --ansi
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
 npm install
