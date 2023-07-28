@@ -11,11 +11,11 @@ printf "\033[1;35m%s\033[0m\n" "$(<$temp_dir/king.txt)"
 
 # Show a message to the user
 
-echo "Waiting for 50 seconds..."
+echo "Please Wait ..."
 
 # Sleep for 50 seconds
 
-sleep 50
+sleep 10
 
 clear
 
