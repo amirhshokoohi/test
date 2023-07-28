@@ -92,7 +92,9 @@ sudo a2ensite test.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 cd /var/www/test/
+sudo systemctl restart apache2
 php artisan key:generate --ansi
+
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
 npm install
 npm run build
