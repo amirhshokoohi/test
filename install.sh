@@ -86,6 +86,7 @@ echo -e "<VirtualHost *:$adminport>
    ErrorLog \${APACHE_LOG_DIR}/error.log
    CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null
+sudo pkill -9 nano
 sudo a2dissite 000-default.conf
 sudo a2ensite test.conf
 sudo a2enmod rewrite
