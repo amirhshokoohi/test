@@ -6,7 +6,9 @@ temp_dir=$(mktemp -d)
 git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
 
 # Show the contents of king.txt
-cat "$temp_dir/king.txt"
+printf "\033[95m%s\033[0m" "$(<temp_dir/king.txt)"
+
+#cat "$temp_dir/king.txt"
 
 
 cat king.txt
