@@ -124,33 +124,25 @@ sudo chgrp -R www-data /var/www/test
 sudo chown -R www-data:www-data /var/www/test
 sudo chmod -R 775 /var/www/test/storage
 cd /etc/apache2/sites-available/
-sudo sed -i "s/^<VirtualHost \*:.*>$/<VirtualHost *:$adminport>/" /etc/apache2/sites-available/test.conf
-sudo sed -i "s/^ServerName .*$/ServerName $ipv4/" /etc/apache2/sites-available/test.conf
-sudo sed -i "s@^DocumentRoot .*@DocumentRoot /var/www/test/public@" /etc/apache2/sites-available/test.conf
-sudo sed -i "s@^<Directory /var/www/test>@<Directory /var/www/test>@" /etc/apache2/sites-available/test.conf
+
+
+sudo nano test.conf
+echo -e "<VirtualHost *:$adminport>
+   ServerName $ipv4
+   ServerAdmin webmaster@thedomain.com
+   DocumentRoot /var/www/test/public
+
+   <Directory /var/www/test>
+       #AllowOverride All
+   </Directory>
+   ErrorLog \${APACHE_LOG_DIR}/error.log
+   CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null
 
 sudo a2dissite 000-default.conf
 sudo a2ensite test.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
-
-#sudo nano test.conf
-#echo -e "<VirtualHost *:$adminport>
-  # ServerName $ipv4
-   #ServerAdmin webmaster@thedomain.com
-   #DocumentRoot /var/www/test/public
-
-   #<Directory /var/www/test>
-       #AllowOverride All
-   #</Directory>
-  # ErrorLog \${APACHE_LOG_DIR}/error.log
-   #CustomLog \${APACHE_LOG_DIR}/access.log combined
-#</VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null | sudo pkill -9 nano
-#sudo pkill -9 nano
-#sudo a2dissite 000-default.conf
-#sudo a2ensite test.conf
-#sudo a2enmod rewrite
-#sudo systemctl restart apache2
 cd /var/www/test/
 php artisan key:generate --ansi
 php artisan migrate
