@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ASCII Art</title>
-</head>
-<body>
-<pre style="color:red;">
+
  
 
                      ___                                       ___             
@@ -31,8 +25,3 @@
  (___ ) (___|___|___)(___)`.__. |  | \__.' `.__.'_.(___)(___)`.__.'(___)       
                           ( `-' ;  | |                                         
                            `.__.  (___)                                        
-
-
-</pre>
-</body>
-</html>
