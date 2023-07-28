@@ -31,6 +31,7 @@ read porttmp
 if [[ -n "${porttmp}" ]]; then
     adminport=${passwordtmp}
 fi
+fi
 
 ipv4=$(curl -s ipv4.icanhazip.com)
 
