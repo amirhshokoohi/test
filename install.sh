@@ -29,7 +29,7 @@ echo -e "\nPlease Enter Panel Admin Port."
 printf "Default Port is \e[33m${adminport}\e[0m, let it blank to use this password : "
 read porttmp
 if [[ -n "${porttmp}" ]]; then
-    adminport=${passwordtmp}
+    adminport=${porttmp}
 fi
 fi
 
