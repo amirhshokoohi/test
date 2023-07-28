@@ -7,7 +7,7 @@ git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
 
 # Show the contents of king.txt
 
-printf "\033[1;31;44m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+printf "\033[95m%s\033[0m" "$(<$temp_dir/king.txt)"
 
 
 # Show a message to the user
