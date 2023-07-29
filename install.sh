@@ -215,10 +215,10 @@ clear
 
 printf "\033[1;35m%s\033[0m\n" "$(<$temp_dir/king.txt)"
 
-echo -e "\033[1;35m************ KING Panel ************\033[0m"
+echo -e "\033[1;35m---------------> KING Panel <----------------\033[0m"
 echo -e "\033[1;35mUsername : \033[0m${adminusername}"
 echo -e "\033[1;35mPassword : \033[0m${adminpassword}"
-echo -e "\033[1;35m-------- Connection Details -----------\033[0m"
+echo -e "\033[1;35m******** Connection Details ********\033[0m"
 echo -e "\033[1;35mIP : \033[0m$ipv4"
 echo -e "\033[1;35mSSH port : \033[0m${adminport}"
 
