@@ -5,9 +5,13 @@
 temp_dir=$(mktemp -d)
 git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
 
+clear
+
 # Show the contents of king.txt
 
-printf "\033[1;35m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+#printf "\033[1;35m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+
 
 # Show a message to the user
 
@@ -167,7 +171,9 @@ test -f test.conf || sudo tee test.conf > /dev/null << EOF
    DocumentRoot /var/www/test/public
 
    <Directory /var/www/test>
-       #AllowOverride All
+       Options Indexes FollowSymLinks
+       AllowOverride All
+       Require all granted
    </Directory>
    ErrorLog \${APACHE_LOG_DIR}/error.log
    CustomLog \${APACHE_LOG_DIR}/access.log combined
