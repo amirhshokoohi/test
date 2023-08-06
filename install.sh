@@ -227,7 +227,7 @@ npm install
 
 npm run build
 
-clear
+
 
 
 printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/king.txt)"
