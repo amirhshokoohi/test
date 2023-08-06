@@ -154,6 +154,10 @@ sudo sed -i "s/DB_USERNAME=.*/DB_USERNAME=$adminusername/" .env
 
 sudo sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$adminpassword/" .env
 
+echo "USERNAME=${adminusername}" >> .env
+
+echo "PASSWORD=${adminpassword}" >> .env
+
 sudo chgrp -R www-data /var/www/test
 
 sudo chown -R www-data:www-data /var/www/test
@@ -208,6 +212,14 @@ cd /var/www/test/
 php artisan key:generate --ansi
 
 php artisan migrate
+
+php artisan tinker << EOF
+use App\Models\Setting;
+$setting = new Setting;
+$setting->username = '${adminusername}';
+$setting->password = '${adminpassword}';
+$setting->save();
+EOF
 
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
 

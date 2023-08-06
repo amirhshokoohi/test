@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +12,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function (){
+//    \RealRashid\SweetAlert\Facades\Alert::success('hello');
+//    return view('login');
+//});
+//Route::get('/' , 'App\Http\Controllers\LoginController@index');
 
+Route::get('/' , 'App\Http\Controllers\LoginController@index');
 
+Route::post('/' , 'App\Http\Controllers\LoginController@authenticated')->name('login.store');
 
-Route::get('/hello', function () {
-    return 'Fuck Off!';
-});

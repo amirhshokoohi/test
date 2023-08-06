@@ -1,0 +1,303 @@
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('/fonts/woff/iranyekanwebboldfanum.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'MyCustomFontx';
+    src: url('/fonts/woff/iranyekanwebextraboldfanum.woff') format('woff');
+}
+
+html {
+    height: 100%;
+}
+
+.rocket-container {
+    position: relative;
+    animation: moveRocket 20s ease infinite;
+}
+
+
+.rocket {
+    width: 300px;
+    height: 400px;
+    top: 200px;
+    right: 150px;
+    position: absolute;
+    /*animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);*/
+    animation-name: moveRocket;
+    animation-duration: 10s;
+}
+
+@keyframes moveRocket {
+    0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+    25% {
+        transform: translateY(-10px) translateX(10px) rotate(15deg);
+    }
+    50% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+    75% {
+        transform: translateY(10px) translateX(-10px) rotate(-15deg);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+    background-image: url('/images/back24.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box h3 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-family: MyCustomFontx;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    direction: rtl;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    font-family: MyCustomFont;
+}
+
+.invalid-feedback {
+    color: white;
+    font-size: 12px;
+    font-family: MyCustomFont;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -20px;
+    right: 0;
+    color: #c3993d;
+    font-size: 12px;
+}
+
+.login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #c3993d;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    direction: ltr;
+    text-align: left;
+    font-family: MyCustomFont;
+}
+
+.login-box a:hover {
+    background: #c3993d;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #c3993d,
+    0 0 25px #c3993d,
+    0 0 50px #c3993d,
+    0 0 100px #c3993d;
+}
+
+.login-box a span {
+    position: absolute;
+    display: block;
+}
+
+.login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c3993d);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+.login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #c3993d);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+
+.login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #c3993d);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+    50%, 100% {
+        right: 100%;
+    }
+}
+
+.login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #c3993d);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+    50%, 100% {
+        bottom: 100%;
+    }
+}
+
+@media (max-width: 810px) {
+    .login-box {
+        width: 100%;
+        max-width: 500px;
+    }
+    .rocket {
+        width: 200px;
+        height: 300px;
+        top: 50px;
+        right: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-box {
+        width: 90%;
+        max-width: 400px;
+    }
+    .rocket {
+        width: 200px;
+        height: 300px;
+        top: 30px;
+        right: 200px;
+        position: absolute;
+
+    }
+}
+
+@media (max-width: 576px) {
+    .rocket {
+        width: 150px;
+        height: 250px;
+        top: 30px;
+        left: 100px;
+    }
+
+    .login-box {
+        padding: 20px;
+    }
+
+    .login-box h3 {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .login-box {
+        width: 280px;
+        padding: 20px;
+    }
+    .rocket {
+        width: 150px;
+        height: 250px;
+        top: 70px;
+        left: 70px;
+    }
+}
+
+/* مدیا کوئری برای اندازه 375 */
+@media screen and (max-width: 375px) {
+    .login-box {
+        width: 320px;
+        padding: 30px;
+    }
+    .rocket {
+        width: 120px;
+        height: 170px;
+        top: 25px;
+        left: 120px;
+    }
+}
