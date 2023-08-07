@@ -214,12 +214,13 @@ php artisan key:generate --ansi
 
 php artisan migrate
 
-if [ -n "$adminusername" -a "$adminusername" != "NULL" ]
-then
- mysql -e "USE Rocket; UPDATE settings SET username = '${adminusername}' where id='1';"
- mysql -e "USE Rocket; UPDATE settings SET password = '${adminpassword}' where id='1';"
+if [ -n "$adminusername" ] && [ "$adminusername" != "NULL" ]; then
+    mysql -e "USE Rocket; UPDATE settings SET username = '${adminusername}' WHERE id='1';"
+    mysql -e "USE Rocket; UPDATE settings SET password = '${adminpassword}' WHERE id='1';"
 else
-mysql -e "USE Rocket; INSERT INTO settings (username, password) VALUES ('${adminusername}', '${adminpassword}');"
+    mysql -e "USE Rocket; INSERT INTO settings (username, password) VALUES ('${adminusername}', '${adminpassword}');"
+fi
+
 
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
 
