@@ -29,9 +29,9 @@ class LoginController extends Controller
             'username' => 'required|min:3',
             'password' => 'required|min:3'
         ]);
-        Setting::create($request->all());
-        //dd($credentials);
-        //dd(Auth::attempt($credentials));
+//        Setting::create($request->all());
+//        dd($credentials);
+//        dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->back()

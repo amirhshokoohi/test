@@ -31,11 +31,11 @@
     <form name="myform" action="{{ route('login.store') }}" method="post">
         @csrf
         <div class="user-box">
-            <input type="text" name="username" required="">
+            <input type="text" name="username" placeholder="Username" required autocomplete="username" autofocus>
             <label>نام کاربری </label>
         </div>
         <div class="user-box">
-            <input type="password" name="password" required="">
+            <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
             <label>رمز عبور</label>
         </div>
         <a style="cursor: pointer" onClick="submitform()">

@@ -28,9 +28,9 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 
 port=$(echo "$po" | sed "s/Port //g")
 
-adminuser=$(mysql -N -e "use Rocket; select adminuser from setting where id='1';")
+adminuser=$(mysql -N -e "use Rocket; select username from setting where id='1';")
 
-adminpass=$(mysql -N -e "use Rocket; select adminpassword from setting where id='1';")
+adminpass=$(mysql -N -e "use Rocket; select password from setting where id='1';")
 
 clear
 
@@ -214,12 +214,10 @@ php artisan key:generate --ansi
 
 php artisan migrate
 
-if [ -n "$adminusername" ] && [ "$adminusername" != "NULL" ]; then
-    mysql -e "USE Rocket; UPDATE settings SET username = '${adminusername}' WHERE id='1';"
-    mysql -e "USE Rocket; UPDATE settings SET password = '${adminpassword}' WHERE id='1';"
-else
-    mysql -e "USE Rocket; INSERT INTO settings (username, password) VALUES ('${adminusername}', '${adminpassword}');"
-fi
+php artisan tinker << EOF
+use App\Models\Setting;
+Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}']);
+EOF
 
 
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
