@@ -7,9 +7,9 @@ git clone https://github.com/amirhshokoohi/test.git "$temp_dir"
 
 clear
 
-# Show the contents of king.txt
+# Show the contents of Rocket.txt
 
-printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/Rocket.txt)"
 
 
 # Show a message to the user
@@ -28,9 +28,9 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 
 port=$(echo "$po" | sed "s/Port //g")
 
-adminuser=$(mysql -N -e "use King; select adminuser from setting where id='1';")
+adminuser=$(mysql -N -e "use Rocket; select adminuser from setting where id='1';")
 
-adminpass=$(mysql -N -e "use King; select adminpassword from setting where id='1';")
+adminpass=$(mysql -N -e "use Rocket; select adminpassword from setting where id='1';")
 
 clear
 
@@ -112,12 +112,12 @@ sudo apt-get install php8.2 -y
 
 sudo apt install php-mbstring php-mysql php-curl php-cli php-dev php-imagick php-soap php8.1-zip php-xml php-imap php-xmlrpc php8.1-gd php8.3-opcache php-intl php-json php8.1-ldap php8.2-pdo php8.2-fpm  -y
 
- 
+
 sudo systemctl restart apache2
 
 sudo apt install mariadb-server -y
 
-mysql -e "create database King;" &
+mysql -e "create database Rocket;" &
 
 wait
 
@@ -149,7 +149,7 @@ yes | composer install
 
 cp .env.example .env
 
-sudo sed -i "s/DB_DATABASE=.*/DB_DATABASE=King/" .env
+sudo sed -i "s/DB_DATABASE=.*/DB_DATABASE=Rocket/" .env
 
 sudo sed -i "s/DB_USERNAME=.*/DB_USERNAME=$adminusername/" .env
 
@@ -214,13 +214,12 @@ php artisan key:generate --ansi
 
 php artisan migrate
 
-php artisan tinker << EOF
-use App\Models\Setting;
-$setting = new Setting;
-$setting->username = '${adminusername}';
-$setting->password = '${adminpassword}';
-$setting->save();
-EOF
+if [ -n "$adminusername" -a "$adminusername" != "NULL" ]
+then
+ mysql -e "USE Rocket; UPDATE settings SET username = '${adminusername}' where id='1';"
+ mysql -e "USE Rocket; UPDATE settings SET password = '${adminpassword}' where id='1';"
+else
+mysql -e "USE Rocket; INSERT INTO settings (username, password) VALUES ('${adminusername}', '${adminpassword}');"
 
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
 
@@ -231,9 +230,9 @@ npm run build
 
 
 
-printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/king.txt)"
+printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/Rocket.txt)"
 
-echo -e "\033[1;33m---------------> KING Panel <----------------\033[0m"
+echo -e "\033[1;33m---------------> Rocket Panel <----------------\033[0m"
 echo -e "\033[1;33mUsername : \033[0m${adminusername}"
 echo -e "\033[1;33mPassword : \033[0m${adminpassword}"
 echo -e "\033[1;33m******** Connection Details ********\033[0m"
