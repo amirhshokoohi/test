@@ -145,6 +145,8 @@ sudo mv composer.phar /usr/local/bin/composer
 
 cd test
 
+COMPOSER_ALLOW_SUPERUSER=1 composer update
+
 composer update
 
 yes | composer install
