@@ -15,9 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('password');
-            $table->string('email');
-            $table->string('mobile');
-            $table->rememberToken();
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();
+            $table->integer('multi-user')->default(1);
+            $table->integer('is_online')->default(0);
+            $table->string('end_date')->nullable();
+            $table->string('date_of_first_connection')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('traffic')->default(0);
+            $table->string('representative')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

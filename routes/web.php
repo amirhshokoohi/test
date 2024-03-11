@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
+use App\Livewire\Dashboard;
+use App\Livewire\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,13 +18,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function (){
-//    \RealRashid\SweetAlert\Facades\Alert::success('hello');
-//    return view('login');
-//});
-//Route::get('/' , 'App\Http\Controllers\LoginController@index');
+Route::get('/', 'App\Http\Controllers\LoginController@index')->name('login');
+Route::post('/', 'App\Http\Controllers\LoginController@authenticated')->name('login.store');
 
-Route::get('/' , 'App\Http\Controllers\LoginController@index');
 
-Route::post('/' , 'App\Http\Controllers\LoginController@authenticated')->name('login.store');
+/*Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');;
+    Route::get('/admin/get-cpudata', \App\Livewire\Dashboard::class);
+    Route::get('/get-ramdata', \App\Livewire\Dashboard::class)->name('admin.updateCharts');
+    Route::get('/get-diskdata', \App\Livewire\Dashboard::class)->name('admin.updateCharts');
+    Route::resource('users', UserController::class);
+
+
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
+    })->name('logout');
+
+});*/
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/get-cpudata', [\App\Livewire\Dashboard::class, 'getCpuDataRoute']);
+    Route::get('/get-ramdata', [\App\Livewire\Dashboard::class, 'getRamDataRoute']);
+    Route::get('/get-diskdata', [\App\Livewire\Dashboard::class, 'getDiskDataRoute']);
+
+
+    Route::get('/users', User::class)->name('user');
+
+
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
+    })->name('logout');
+});
 

@@ -9,6 +9,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,26 +22,28 @@ class LoginController extends Controller
 
     public function index()
     {
-        //toast('Your Post as been submited!','success');
+       /* Setting::create([
+           'username' => 'amir',
+           'password' => Hash::make('amir123')
+        ]);*/
+        if (Auth::check()){
+            return redirect('admin/dashboard')->with('success', '  خوش برگشتی :)  ');
+        }
         return view('login');
     }
 
     public function authenticated(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|min:3',
-            'password' => 'required|min:3'
+            'username' => 'required',
+            'password' => 'required'
         ]);
-//        Setting::create($request->all());
-//        dd($credentials);
-//        dd(Auth::attempt($credentials));
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->back()
-                ->with('success', 'انجام شد!');
+            return redirect('admin/dashboard')->with('toast_success', '  با موفقیت وارد شدید ! ');
         }
 
-
-        return redirect('/')->with('success', 'سلام');
+        return redirect()->back()->with('toast_error', '! نام کاربری یا رمز عبور صحیح نیست ')->withInput();
     }
 }

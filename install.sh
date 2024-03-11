@@ -145,6 +145,8 @@ sudo mv composer.phar /usr/local/bin/composer
 
 cd test
 
+composer update
+
 yes | composer install
 
 cp .env.example .env
@@ -184,19 +186,6 @@ test -f test.conf || sudo tee test.conf > /dev/null << EOF
 </VirtualHost>
 EOF
 
-#sudo nano test.conf
-
-#echo -e "<VirtualHost *:$adminport>
-   #ServerName $ipv4
-   #ServerAdmin webmaster@thedomain.com
-   #DocumentRoot /var/www/test/public
-
-   #<Directory /var/www/test>
-       #AllowOverride All
-   #</Directory>
-   #ErrorLog \${APACHE_LOG_DIR}/error.log
-   #CustomLog \${APACHE_LOG_DIR}/access.log combined
-#</VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null |sudo pkill -9 nano
 
 sudo sed -i "0,/^Listen / s/^Listen .*/Listen $adminport/" /etc/apache2/ports.conf
 
@@ -216,7 +205,7 @@ php artisan migrate
 
 php artisan tinker << EOF
 use App\Models\Setting;
-Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}']);
+Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}','panel_port'=>'${adminport}','ssh_port'=>'${port}']);
 EOF
 
 
