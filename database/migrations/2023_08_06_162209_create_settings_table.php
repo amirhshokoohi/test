@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
+            $table->string('panel_port')->nullable();
             $table->string('ssh_port')->nullable();
             $table->string('udp_port')->nullable();
-            $table->string('t_token')->nullable();
-            $table->string('t_id')->nullable();
+            $table->string('tel_token')->nullable();
+            $table->string('tel_id')->nullable();
             $table->timestamps();
         });
     }

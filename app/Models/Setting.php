@@ -10,7 +10,7 @@ class Setting extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = ['username','password'];
+    protected $fillable = ['username','password','panel_port','ssh_port','tel_token','tel_id'];
 
     /**
      * The attributes that should be hidden for serialization.

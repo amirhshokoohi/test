@@ -134,11 +134,8 @@ cd /var/www/
 git clone https://github.com/amirhshokoohi/test.git
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
-
 php -r "unlink('composer-setup.php');"
 
 sudo mv composer.phar /usr/local/bin/composer
@@ -184,19 +181,6 @@ test -f test.conf || sudo tee test.conf > /dev/null << EOF
 </VirtualHost>
 EOF
 
-#sudo nano test.conf
-
-#echo -e "<VirtualHost *:$adminport>
-   #ServerName $ipv4
-   #ServerAdmin webmaster@thedomain.com
-   #DocumentRoot /var/www/test/public
-
-   #<Directory /var/www/test>
-       #AllowOverride All
-   #</Directory>
-   #ErrorLog \${APACHE_LOG_DIR}/error.log
-   #CustomLog \${APACHE_LOG_DIR}/access.log combined
-#</VirtualHost>" | sudo tee /etc/apache2/sites-available/test.conf > /dev/null |sudo pkill -9 nano
 
 sudo sed -i "0,/^Listen / s/^Listen .*/Listen $adminport/" /etc/apache2/ports.conf
 
@@ -216,11 +200,12 @@ php artisan migrate
 
 php artisan tinker << EOF
 use App\Models\Setting;
-Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}']);
+Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}','panel_port'=>'${adminport}','ssh_port'=>'${port}']);
 EOF
 
 
-curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
 
 npm install
 

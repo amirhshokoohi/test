@@ -15,7 +15,7 @@ html {
 
 .rocket-container {
     position: relative;
-    animation: moveRocket 20s ease infinite;
+    animation: moveRocket 60s ease infinite;
 }
 
 
@@ -31,7 +31,7 @@ html {
 }
 
 @keyframes moveRocket {
-    0%, 100% {
+    110%, 0% {
         transform: translateY(0) translateX(0) rotate(0);
     }
     25% {
@@ -43,7 +43,7 @@ html {
     75% {
         transform: translateY(10px) translateX(-10px) rotate(-15deg);
     }
-    100% {
+    0% {
         transform: translateY(0) translateX(0) rotate(0);
     }
 
@@ -124,11 +124,14 @@ body {
     font-size: 12px;
 }
 
-.login-box form a {
+.login-box form #submit {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
     color: #c3993d;
+    border: none;
+    background: none;
+    cursor: pointer;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -141,7 +144,7 @@ body {
     font-family: MyCustomFont;
 }
 
-.login-box a:hover {
+.login-box #submit:hover {
     background: #c3993d;
     color: #fff;
     border-radius: 5px;
@@ -151,12 +154,12 @@ body {
     0 0 100px #c3993d;
 }
 
-.login-box a span {
+.login-box #submit span {
     position: absolute;
     display: block;
 }
 
-.login-box a span:nth-child(1) {
+.login-box #submit span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -174,7 +177,7 @@ body {
     }
 }
 
-.login-box a span:nth-child(2) {
+.login-box #submit span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -193,7 +196,7 @@ body {
     }
 }
 
-.login-box a span:nth-child(3) {
+.login-box #submit span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -212,7 +215,7 @@ body {
     }
 }
 
-.login-box a span:nth-child(4) {
+.login-box #submit span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;

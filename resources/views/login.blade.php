@@ -31,29 +31,24 @@
     <form name="myform" action="{{ route('login.store') }}" method="post">
         @csrf
         <div class="user-box">
-            <input type="text" name="username" placeholder="Username" required autocomplete="username" autofocus>
+            <input type="text" name="username" autocomplete="username" autofocus>
             <label>نام کاربری </label>
         </div>
         <div class="user-box">
-            <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
+            <input type="password" name="password" autocomplete="password" autofocus>
             <label>رمز عبور</label>
         </div>
-        <a style="cursor: pointer" onClick="submitform()">
+        <button id="submit" type="submit">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             ورود
-        </a>
+        </button>
     </form>
 </div>
 
 @include('sweetalert::alert')
-<script type="text/javascript">
-    function submitform() {
-        document.myform.submit();
-    }
-</script>
 
 </body>
 
