@@ -108,7 +108,7 @@ sudo ufw allow "Apache Full"
 
 sudo add-apt-repository ppa:ondrej/php -y
 
-sudo apt-get install php8.2 -y
+sudo apt-get install php8.3 -y
 
 sudo apt install php-mbstring php-mysql php-curl php-cli php-dev php-imagick php-soap php8.1-zip php-xml php-imap php-xmlrpc php8.1-gd php8.3-opcache php-intl php-json php8.1-ldap php8.2-pdo php8.2-fpm  -y
 
