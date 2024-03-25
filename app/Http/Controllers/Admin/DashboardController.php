@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 
+=======
+/*
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -52,4 +56,7 @@ class DashboardController extends Controller
 //    }
 
 
+<<<<<<< HEAD
 }
+=======
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c

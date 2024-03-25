@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+<<<<<<< HEAD
 use App\Http\Livewire\Dashboard;
+=======
+use App\Livewire\Dashboard;
+use App\Livewire\User;
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +27,17 @@ Route::post('/', 'App\Http\Controllers\LoginController@authenticated')->name('lo
 
 
 /*Route::middleware(['auth'])->group(function () {
+<<<<<<< HEAD
     Route::get('/admin/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');;
     Route::get('/admin/get-cpudata', \App\Http\Livewire\Dashboard::class);
     Route::get('/get-ramdata', \App\Http\Livewire\Dashboard::class)->name('admin.updateCharts');
     Route::get('/get-diskdata', \App\Http\Livewire\Dashboard::class)->name('admin.updateCharts');
+=======
+    Route::get('/admin/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');;
+    Route::get('/admin/get-cpudata', \App\Livewire\Dashboard::class);
+    Route::get('/get-ramdata', \App\Livewire\Dashboard::class)->name('admin.updateCharts');
+    Route::get('/get-diskdata', \App\Livewire\Dashboard::class)->name('admin.updateCharts');
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
     Route::resource('users', UserController::class);
 
 
@@ -42,6 +54,7 @@ Route::post('/', 'App\Http\Controllers\LoginController@authenticated')->name('lo
 });*/
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
+<<<<<<< HEAD
     Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
     Route::get('/get-cpudata', [\App\Http\Livewire\Dashboard::class, 'getCpuDataRoute']);
     Route::get('/get-ramdata', [\App\Http\Livewire\Dashboard::class, 'getRamDataRoute']);
@@ -49,6 +62,15 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
     Route::resource('users', UserController::class);
+=======
+    Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/get-cpudata', [\App\Livewire\Dashboard::class, 'getCpuDataRoute']);
+    Route::get('/get-ramdata', [\App\Livewire\Dashboard::class, 'getRamDataRoute']);
+    Route::get('/get-diskdata', [\App\Livewire\Dashboard::class, 'getDiskDataRoute']);
+
+
+    Route::get('/users', User::class)->name('user');
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 
 
     Route::post('/logout', function (Request $request) {

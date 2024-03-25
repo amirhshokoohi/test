@@ -13,7 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         return view('admin.users');
+=======
+//        return view('admin.users');
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
     }
 
     /**

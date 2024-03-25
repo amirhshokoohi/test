@@ -16,6 +16,7 @@
     <section class="content">
         <div class="container-fluid">
 
+<<<<<<< HEAD
             <div class="row mt-1">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
@@ -76,6 +77,9 @@
                 </div>
                 <!-- /.col -->
             </div>
+=======
+            @livewire('users-stat')
+>>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 
             <div class="row mt-2">
                 <div class="col-12">
