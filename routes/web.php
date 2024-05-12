@@ -1,12 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
-<<<<<<< HEAD
 use App\Http\Livewire\Dashboard;
-=======
 use App\Livewire\Dashboard;
 use App\Livewire\User;
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
