@@ -146,6 +146,8 @@ COMPOSER_ALLOW_SUPERUSER=1 composer update
 
 cp .env.example .env
 
+sudo sed -i "s/SERVER_IP=.*/SERVER_IP=$ipv4/" .env
+
 sudo sed -i "s/DB_DATABASE=.*/DB_DATABASE=Rocket/" .env
 
 sudo sed -i "s/DB_USERNAME=.*/DB_USERNAME=$adminusername/" .env
