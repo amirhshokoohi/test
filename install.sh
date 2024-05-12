@@ -213,8 +213,6 @@ npm install
 
 npm run build
 
-sed -i "s/'http:\/\/\$serverIp:19999\/api\/v1\/data?chart=system.cpu&after=-1&format=json'/'http:\/\/$ipv4:19999\/api\/v1\/data?chart=system.cpu&after=-1&format=json'/g" app/Livewire/Dashboard.php
-
 apt install netdata -y
 
 sed -i 's/bind socket to IP = 127.0.0.1/bind socket to IP = 0.0.0.0/' /etc/netdata/netdata.conf
