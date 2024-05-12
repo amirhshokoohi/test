@@ -76,9 +76,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-=======
             @livewire('users-stat')
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 
             <div class="row mt-2">
                 <div class="col-12">
