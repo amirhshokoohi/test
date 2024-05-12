@@ -47,10 +47,8 @@
 {{--<script src="{{ asset('/js/dashboard.js') }}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/js/demo.js') }}"></script>
-<<<<<<< HEAD
 @livewireScripts
-=======
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
 <!-- PAGE SCRIPTS -->
 @yield('charts')
 
@@ -75,11 +73,11 @@
         showContent();
     });
 </script>
-<<<<<<< HEAD
+
 <script>
-=======
-{{--<script>
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
+<script>
+
     document.addEventListener("DOMContentLoaded", function () {
         const darkModeSwitch = document.getElementById('darkModeSwitch'); // استفاده از شناسه سوئیچ
 
@@ -123,13 +121,13 @@
         return "";
     }
 
-<<<<<<< HEAD
+
 </script>
 <script>
-=======
-</script>--}}
-{{--<script>
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
+</script>
+<script>
+
     document.addEventListener("DOMContentLoaded", function() {
         const darkModeSwitch = document.getElementById('darkModeSwitch');
         const darkModeIcon = document.getElementById('darkModeIcon');
@@ -172,9 +170,9 @@
             switchCircle.style.transform = 'translateX(0)';
         }
     });
-<<<<<<< HEAD
-=======
-</script>--}}
+
+
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const darkModeSwitch = document.getElementById('darkModeSwitch');
@@ -201,7 +199,7 @@
             }
         });
     });
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
 </script>
 
 
@@ -225,11 +223,11 @@
         });
     });
 </script>
-<<<<<<< HEAD
-=======
+
+
 
 </body>
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
 </body>
 </html>
 
