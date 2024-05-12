@@ -213,12 +213,16 @@ npm run build
 
 apt install netdata -y
 
-sed -i 's/bind socket to IP = 127.0.0.1/bind socket to IP = 0.0.0.0/' /etc/netdata/netdata.conf
-
 sed -i "s/serverIp =.*/serverIp = \"$ipv4\"/" app/Livewire/Dashboard.php
 
-clear
+sed -i 's/bind socket to IP = 127.0.0.1/bind socket to IP = 0.0.0.0/' /etc/netdata/netdata.conf
 
+service netdata restart
+
+service netdata restart
+
+clear
+clear
 
 printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/Rocket.txt)"
 
