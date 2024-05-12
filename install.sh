@@ -144,10 +144,6 @@ cd test
 
 COMPOSER_ALLOW_SUPERUSER=1 composer update
 
-composer update
-
-yes | composer install
-
 cp .env.example .env
 
 sudo sed -i "s/DB_DATABASE=.*/DB_DATABASE=Rocket/" .env
@@ -215,7 +211,7 @@ npm install
 
 npm run build
 
-
+clear
 
 
 printf "\033[1;33m%s\033[0m\n" "$(<$temp_dir/Rocket.txt)"
