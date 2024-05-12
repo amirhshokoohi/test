@@ -200,7 +200,7 @@ php artisan migrate
 
 php artisan tinker << EOF
 use App\Models\Setting;
-Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}','panel_port'=>'${adminport}','ssh_port'=>'${port}']);
+Setting::create(['username'=> '${adminusername}','password'=>'${adminpassword}','panel_port'=>'${adminport}','ssh_port'=>'${port}','server_ip'=>'${ipv4}']);
 EOF
 
 
