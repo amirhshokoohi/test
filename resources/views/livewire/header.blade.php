@@ -31,11 +31,11 @@
     <!-- template rtl version -->
     <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<<<<<<< HEAD
-    @livewireStyles
-=======
 
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+    @livewireStyles
+
+
+
     <style>
         body {
             visibility: hidden;
@@ -61,12 +61,11 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
             </li>
-<<<<<<< HEAD
+
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="index3.html" class="nav-link">خانه</a>
             </li>
-=======
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
 
         </ul>
 
