@@ -16,7 +16,6 @@
     <section class="content">
         <div class="container-fluid">
 
-<<<<<<< HEAD
             <div class="row mt-1">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
@@ -25,7 +24,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">کل کاربران</span>
                             <span class="info-box-number">
-                                {{ $countAllUsers > 0 ? $countAllUsers : 0 }}
+<!--                                 {{ $countAllUsers > 0 ? $countAllUsers : 0 }} -->
                             </span>
                         </div>
                         <!-- /.info-box-content -->
