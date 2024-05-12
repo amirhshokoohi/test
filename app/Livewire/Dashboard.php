@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use App\Models\Setting;
 
 class Dashboard extends Component
 {
@@ -15,16 +16,19 @@ class Dashboard extends Component
     public $diskUsed;
     public $diskCapacity;
     public $diskUsedPercent;
+    public $serverIp;
 
 
     public function render()
     {
+        $result = Setting::first();
+        $serverIp = $result->server_ip;
         return view('livewire.dashboard');
     }
 
     public function getCpuData()
     {
-        $cpuUsage = Http::get('http://serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
+        $cpuUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
         /* CPU Usage */
         $cpuCollection = $cpuUsage["data"][0];
         array_shift($cpuCollection);
