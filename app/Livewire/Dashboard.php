@@ -39,7 +39,7 @@ class Dashboard extends Component
 
     public function getRamData()
     {
-        $memoryUsage = Http::get('http://serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
+        $memoryUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
         /* RAM Usage */
         $ramCollection = $memoryUsage["data"][0];
         array_shift($ramCollection);
@@ -54,7 +54,7 @@ class Dashboard extends Component
 
     public function getDiskData()
     {
-        $diskUsage = Http::get('http://serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
+        $diskUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
         /* SWAP Usage */
         $diskCollection = $diskUsage["data"][0];
         array_shift($diskCollection);
