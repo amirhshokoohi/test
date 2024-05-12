@@ -9,10 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Hash;
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
@@ -25,13 +22,10 @@ class LoginController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
-=======
        /* Setting::create([
            'username' => 'amir',
            'password' => Hash::make('amir123')
         ]);*/
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
         if (Auth::check()){
             return redirect('admin/dashboard')->with('success', '  خوش برگشتی :)  ');
         }
