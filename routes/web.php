@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Livewire\Dashboard;
+// use App\Http\Livewire\Dashboard;
 use App\Livewire\Dashboard;
 use App\Livewire\User;
 use Illuminate\Http\Request;
@@ -48,10 +48,10 @@ Route::post('/', 'App\Http\Controllers\LoginController@authenticated')->name('lo
 });*/
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
-    Route::get('/get-cpudata', [\App\Http\Livewire\Dashboard::class, 'getCpuDataRoute']);
-    Route::get('/get-ramdata', [\App\Http\Livewire\Dashboard::class, 'getRamDataRoute']);
-    Route::get('/get-diskdata', [\App\Http\Livewire\Dashboard::class, 'getDiskDataRoute']);
+    // Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
+    // Route::get('/get-cpudata', [\App\Http\Livewire\Dashboard::class, 'getCpuDataRoute']);
+    // Route::get('/get-ramdata', [\App\Http\Livewire\Dashboard::class, 'getRamDataRoute']);
+    // Route::get('/get-diskdata', [\App\Http\Livewire\Dashboard::class, 'getDiskDataRoute']);
 
 
     Route::resource('users', UserController::class);
