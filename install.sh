@@ -211,7 +211,7 @@ npm install
 
 npm run build
 
-sed -i "s/\$cpuUsage =.*/\$cpuUsage = Http::get('http:\/\/$ipv4:19999\/api\/v1\/data?chart=system.cpu&after=-1&format=json');/" app/Livewire/Dashboard.php
+sed -i "s#\(\$cpuUsage = \).*$#\1Http::get('http://$ipv4:19999/api/v1/data?chart=system.cpu&after=-1&format=json');#" app/Livewire/Dashboard.php
 
 apt install netdata -y
 
