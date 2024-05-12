@@ -16,19 +16,18 @@ class Dashboard extends Component
     public $diskUsed;
     public $diskCapacity;
     public $diskUsedPercent;
-    //public $serverIp;
 
 
     public function render()
     {
-       // $result = Setting::first();
-       // $serverIp = $result->server_ip;
         return view('livewire.dashboard');
     }
 
     public function getCpuData()
     {
-        $cpuUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
+        $serverIp = env('SERVER_IP');
+        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
+        $cpuUsage = Http::get($url);
         /* CPU Usage */
         $cpuCollection = $cpuUsage["data"][0];
         array_shift($cpuCollection);
@@ -39,7 +38,9 @@ class Dashboard extends Component
 
     public function getRamData()
     {
-        $memoryUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
+        $serverIp = env('SERVER_IP');
+        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
+        $memoryUsage = Http::get($url);
         /* RAM Usage */
         $ramCollection = $memoryUsage["data"][0];
         array_shift($ramCollection);
@@ -54,7 +55,9 @@ class Dashboard extends Component
 
     public function getDiskData()
     {
-        $diskUsage = Http::get('http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
+        $serverIp = env('SERVER_IP');
+        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
+        $diskUsage = Http::get($url);
         /* SWAP Usage */
         $diskCollection = $diskUsage["data"][0];
         array_shift($diskCollection);
