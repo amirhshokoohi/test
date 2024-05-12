@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('panel_port')->nullable();
             $table->string('ssh_port')->nullable();
+            $table->string('server_ip')->nullable();
             $table->string('udp_port')->nullable();
             $table->string('tel_token')->nullable();
             $table->string('tel_id')->nullable();
