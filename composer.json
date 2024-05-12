@@ -10,11 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-<<<<<<< HEAD
         "livewire/livewire": "*",
-=======
         "livewire/livewire": "^3.0",
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
         "realrashid/sweet-alert": "^7.0"
     },
     "require-dev": {
