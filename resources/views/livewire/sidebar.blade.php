@@ -26,11 +26,11 @@
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-<<<<<<< HEAD
+
                         <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
-=======
+
                         <a href="{{ route('dashboard') }}" wire:navigate  class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
                             <i class="nav-icon fa fa-dashboard"></i>
                             <p>
                                 پیشخوان
@@ -38,11 +38,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
-=======
+
                         <a href="{{ route('user') }}" wire:navigate  class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
->>>>>>> deea3b07c71f6cd4b20f9d92e9ee7fb75287000c
+
                             <i class="nav-icon fa fa-user"></i>
                             <p>
                                 کاربران
