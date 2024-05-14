@@ -24,7 +24,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">کل کاربران</span>
                             <span class="info-box-number">
-<!--                                 {{ $countAllUsers > 0 ? $countAllUsers : 0 }} -->
+                               {{ $countAllUsers > 0 ? $countAllUsers : 0 }}
                             </span>
                         </div>
                         <!-- /.info-box-content -->

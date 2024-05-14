@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
-//use App\Models\Setting;
 
 class Dashboard extends Component
 {
@@ -16,6 +16,12 @@ class Dashboard extends Component
     public $diskUsed;
     public $diskCapacity;
     public $diskUsedPercent;
+    public $countAllUsers;
+
+    public function users()
+    {
+        $this->countAllUsers = User::count();
+    }
 
 
     public function render()
@@ -69,6 +75,7 @@ class Dashboard extends Component
         $this->diskCapacity = $diskCapacity;
         $this->diskUsedPercent = $diskUsedPercent;
     }
+
     public function getCpuDataRoute()
     {
         $this->getCpuData();
@@ -95,14 +102,14 @@ class Dashboard extends Component
         ]);
     }
 
-   /* public function logout(Request $request)
-    {
-        Auth::logout();
+    /* public function logout(Request $request)
+     {
+         Auth::logout();
 
-        $request->session()->invalidate();
+         $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+         $request->session()->regenerateToken();
 
-        return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
-    }*/
+         return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
+     }*/
 }
