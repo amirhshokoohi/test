@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <span class="brand-link">
+    <span class="brand-link" style="padding: 18px .5rem">
         <img src="{{ asset('/images/ad-pro-visuals-cropped.svg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light mr-2">پنل مدیریت راکت </span>
@@ -26,8 +26,6 @@
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-
-                        <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
 
                         <a href="{{ route('dashboard') }}" wire:navigate  class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
 

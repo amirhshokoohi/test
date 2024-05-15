@@ -18,6 +18,17 @@ class Dashboard extends Component
     public $diskUsedPercent;
     public $countAllUsers;
 
+    public function getProperUrl($url)
+    {
+        $url = str_replace('$serverIp', $this->getServerIp(), $url);
+        return $url;
+    }
+
+    public function getServerIp()
+    {
+        return env('SERVER_IP');
+    }
+
     public function users()
     {
         $this->countAllUsers = User::count();
@@ -31,8 +42,7 @@ class Dashboard extends Component
 
     public function getCpuData()
     {
-        $serverIp = env('SERVER_IP');
-        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
+        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
         $cpuUsage = Http::get($url);
         /* CPU Usage */
         $cpuCollection = $cpuUsage["data"][0];
@@ -44,8 +54,7 @@ class Dashboard extends Component
 
     public function getRamData()
     {
-        $serverIp = env('SERVER_IP');
-        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
+        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
         $memoryUsage = Http::get($url);
         /* RAM Usage */
         $ramCollection = $memoryUsage["data"][0];
@@ -61,8 +70,7 @@ class Dashboard extends Component
 
     public function getDiskData()
     {
-        $serverIp = env('SERVER_IP');
-        $url = str_replace('$serverIp', $serverIp, 'http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
+        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
         $diskUsage = Http::get($url);
         /* SWAP Usage */
         $diskCollection = $diskUsage["data"][0];
@@ -75,7 +83,6 @@ class Dashboard extends Component
         $this->diskCapacity = $diskCapacity;
         $this->diskUsedPercent = $diskUsedPercent;
     }
-
     public function getCpuDataRoute()
     {
         $this->getCpuData();
@@ -102,14 +109,14 @@ class Dashboard extends Component
         ]);
     }
 
-    /* public function logout(Request $request)
-     {
-         Auth::logout();
+   /* public function logout(Request $request)
+    {
+        Auth::logout();
 
-         $request->session()->invalidate();
+        $request->session()->invalidate();
 
-         $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-         return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
-     }*/
+        return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
+    }*/
 }
