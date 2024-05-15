@@ -18,10 +18,10 @@ class Dashboard extends Component
     public $diskUsedPercent;
     public $countAllUsers;
 
-    public function getProperUrl($url)
+    public function getServerStatus($key)
     {
-        $url = str_replace('$serverIp', $this->getServerIp(), $url);
-        return $url;
+        $url = str_replace('serverIp', $this->getServerIp(), 'http://serverIp:19999/api/v1/data?chart='.$key.'&after=-1&format=json');
+        return Http::get($url);
     }
 
     public function getServerIp()
@@ -42,8 +42,7 @@ class Dashboard extends Component
 
     public function getCpuData()
     {
-        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=system.cpu&after=-1&format=json');
-        $cpuUsage = Http::get($url);
+        $cpuUsage = $this->getServerStatus('system.cpu');
         /* CPU Usage */
         $cpuCollection = $cpuUsage["data"][0];
         array_shift($cpuCollection);
@@ -54,8 +53,7 @@ class Dashboard extends Component
 
     public function getRamData()
     {
-        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=system.ram&after=-1&format=json');
-        $memoryUsage = Http::get($url);
+        $memoryUsage = $this->getServerStatus('system.ram');
         /* RAM Usage */
         $ramCollection = $memoryUsage["data"][0];
         array_shift($ramCollection);
@@ -70,8 +68,7 @@ class Dashboard extends Component
 
     public function getDiskData()
     {
-        $url = $this->getProperUrl('http://$serverIp:19999/api/v1/data?chart=disk_space._tmp&after=-1&format=json');
-        $diskUsage = Http::get($url);
+        $diskUsage = $this->getServerStatus('disk_space._tmp');
         /* SWAP Usage */
         $diskCollection = $diskUsage["data"][0];
         array_shift($diskCollection);
@@ -83,6 +80,7 @@ class Dashboard extends Component
         $this->diskCapacity = $diskCapacity;
         $this->diskUsedPercent = $diskUsedPercent;
     }
+
     public function getCpuDataRoute()
     {
         $this->getCpuData();
@@ -109,14 +107,4 @@ class Dashboard extends Component
         ]);
     }
 
-   /* public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/')->with('toast_success', ' :) به امید دیدار  ');
-    }*/
 }

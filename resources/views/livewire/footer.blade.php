@@ -76,8 +76,6 @@
 
 <script>
 
-<script>
-
     document.addEventListener("DOMContentLoaded", function () {
         const darkModeSwitch = document.getElementById('darkModeSwitch'); // استفاده از شناسه سوئیچ
 

@@ -40,7 +40,7 @@
             opacity: 0;
         }
     </style>
-
+    @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini {{ \Illuminate\Support\Facades\Cookie::get('darkMode') ? 'dark-mode' : '' }}">
 <noscript>
@@ -104,7 +104,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+@livewireScripts
 <!-- jQuery -->
 <script src="{{ asset('/js/jquery.min.js') }}" data-navigate-once></script>
 <!-- jQuery UI 1.11.4 -->
